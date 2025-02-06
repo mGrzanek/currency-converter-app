@@ -12,4 +12,7 @@ describe('ConvertPLNtoUSD', () => {
     expect(convertPLNToUSD('abc')).toBeNaN();
     expect(convertPLNToUSD('-543')).toBeNaN();
   });
+  it('should return NaN when argument is empty', () => {
+    expect(convertPLNToUSD()).toBeNaN();
+  });
 });
