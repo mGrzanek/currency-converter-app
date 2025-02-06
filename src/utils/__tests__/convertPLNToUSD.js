@@ -15,4 +15,10 @@ describe('ConvertPLNtoUSD', () => {
   it('should return NaN when argument is empty', () => {
     expect(convertPLNToUSD()).toBeNaN();
   });
+  it('should return Error when input is not string or number', () => {
+    expect(convertPLNToUSD([])).toBe('Error');
+    expect(convertPLNToUSD({})).toBe('Error');
+    expect(convertPLNToUSD(function() {})).toBe('Error');
+    expect(convertPLNToUSD(null)).toBe('Error');
+  });
 });
