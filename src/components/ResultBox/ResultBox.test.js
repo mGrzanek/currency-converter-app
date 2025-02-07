@@ -36,4 +36,19 @@ describe('Component ResultBox', () => {
             cleanup();
         }
     });
+    it("should render proper info when 'from' and 'to' have the same value", () => {
+        const testCases = [
+            { amount: 100, from: 'USD', to: 'USD', expectedResult: "$100.00 = $100.00" },
+            { amount: 20, from: 'USD', to: 'USD', expectedResult: "$20.00 = $20.00" },
+            { amount: 200, from: 'PLN', to: 'PLN', expectedResult: "PLN 200.00 = PLN 200.00" },
+            { amount: 345, from: 'PLN', to: 'PLN', expectedResult: "PLN 345.00 = PLN 345.00" }
+        ];
+
+        for(let testCase of testCases){
+            render(<ResultBox from={testCase.from} to={testCase.to} amount={testCase.amount} />);
+            const result = screen.getByTestId('result');
+            expect(result).toHaveTextContent(testCase.expectedResult);
+            cleanup();
+        }
+    });
 });
