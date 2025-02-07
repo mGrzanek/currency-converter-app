@@ -51,4 +51,23 @@ describe('Component ResultBox', () => {
             cleanup();
         }
     });
+    it("should render 'Wrong value...' when input value is wrong", () => {
+        const testCases = [
+            { amount: -100, from: 'PLN', to: 'USD' },
+            { amount: 'abc', from: 'PLN', to: 'USD' },
+            { amount: -200, from: 'USD', to: 'PLN' },
+            { amount: '', from: 'USD', to: 'PLN' },
+            { amount: -580, from: 'USD', to: 'USD' },
+            { amount: -780, from: 'PLN', to: 'PLN' },
+        ];
+
+        const expectedResult = "Wrong value...";
+
+        for(let testCase of testCases){
+            render(<ResultBox from={testCase.from} to={testCase.to} amount={testCase.amount}  />);
+            const result = screen.getByTestId('result');
+            expect(result).toHaveTextContent(expectedResult);
+            cleanup();
+        }
+    });
 });
