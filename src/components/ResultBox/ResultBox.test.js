@@ -19,7 +19,21 @@ describe('Component ResultBox', () => {
             const result = screen.getByTestId('result');
             expect(result).toHaveTextContent(testCase.expectedResult);
             cleanup();
+        }
+    });
+    it("should render proper info about conversion when USD -> PLN", () => {
+        const testCases = [
+            { amount: 100, from: 'USD', to: 'PLN', expectedResult: "$100.00 = PLN 350.00" },
+            { amount: 20, from: 'USD', to: 'PLN', expectedResult: "$20.00 = PLN 70.00" },
+            { amount: 200, from: 'USD', to: 'PLN', expectedResult: "$200.00 = PLN 700.00" },
+            { amount: 345, from: 'USD', to: 'PLN', expectedResult: "$345.00 = PLN 1,207.50" },
+        ];
 
+        for(let testCase of testCases){
+            render(<ResultBox from={testCase.from} to={testCase.to} amount={testCase.amount}  />);
+            const result = screen.getByTestId("result");
+            expect(result).toHaveTextContent(testCase.expectedResult);
+            cleanup();
         }
     });
 });
