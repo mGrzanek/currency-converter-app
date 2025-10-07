@@ -6,6 +6,8 @@ Currency converter is a simple frontend application that allows users to convert
 
 The user selects the source and target currencies, enters the amount and after clicking the *Convert* button, the converted value is displayed.
 
+Project view: https://currency-converter-app-rtl5.onrender.com/
+
 ## Technologies Used
 
 - **Frontend:** React, SCSS Modules
